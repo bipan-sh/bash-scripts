@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Define the website to scrape
+read -p "Enter URL: " URL
+
+# Fetch the website content using curl
+content=$(curl -s $URL)
+
+# Extract all URLs from the content using sed
+echo "$content" | sed -n 's/.*href="\([^"]*\).*/\1/p' | sed 's/^/URL: /'
+
+# Save to a file
+echo "$content" | sed -n 's/.*href="\([^"]*\).*/\1/p' > scraped_urls.txt
+
+# Print success message
+echo "Scraping complete! URLs have been saved to scraped_urls.txt"
