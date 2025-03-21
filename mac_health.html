@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="30">
+    <title>Mac Health Report - Bipans-MacBook-Pro.local</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f8f8;
+        }
+        h1, h2, h3 {
+            color: #333;
+            border-bottom: 1px solid #eaeaea;
+            padding-bottom: 10px;
+        }
+        .section {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .meter {
+            height: 20px;
+            background: #e6e6e6;
+            border-radius: 10px;
+            padding: 1px;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,.2);
+            margin-top: 5px;
+        }
+        .meter > span {
+            display: block;
+            height: 100%;
+            border-radius: 10px;
+            background-color: #2196F3;
+            position: relative;
+            overflow: hidden;
+        }
+        .meter > span.warning {
+            background-color: #FF9800;
+        }
+        .meter > span.danger {
+            background-color: #F44336;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .footer {
+            text-align: center;
+            color: #666;
+            font-size: 0.8em;
+            margin-top: 40px;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-size: 0.9em;
+            font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: .5em;
+            border-radius: 3px;
+            max-height: 200px;
+            overflow: auto;
+        }
+        .timestamp {
+            font-style: italic;
+            color: #666;
+            text-align: right;
+        }
+        .collapse-button {
+            background: #f8f8f8;
+            border: none;
+            padding: 5px 10px;
+            margin: 5px 0;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .collapse-content {
+            display: none;
+        }
+        .collapse-content.open {
+            display: block;
+        }
+    </style>
+    <script>
+        function toggleCollapse(id) {
+            const content = document.getElementById(id);
+            if (content.classList.contains('open')) {
+                content.classList.remove('open');
+            } else {
+                content.classList.add('open');
+            }
+        }
+        
+        window.onload = function() {
+            // Open the first few sections by default
+            document.getElementById('system-info').classList.add('open');
+            document.getElementById('memory-info').classList.add('open');
+            document.getElementById('cpu-info').classList.add('open');
+        }
+    </script>
+</head>
+<body>
+    <h1>Mac Health Report</h1>
+    <p class="timestamp">Generated on: 2025-03-21 23:51:41</p>
+    
+    <div class="section">
+        <h2 onclick="toggleCollapse('system-info')" style="cursor:pointer;">
+            System Information ▼
+        </h2>
+        <div id="system-info" class="collapse-content">
+            <div class="grid">
+                <div>
+                    <p><strong>Hostname:</strong> Bipans-MacBook-Pro.local</p>
+                    <p><strong>Model:</strong> Mac15,3</p>
+                    <p><strong>OS Version:</strong> macOS 15.3.2</p>
+                    <p><strong>Kernel:</strong> Darwin Kernel Version 24.3.0: Thu Jan  2 20:24:23 PST 2025; root:xnu-11215.81.4~3/RELEASE_ARM64_T8122</p>
+                    <p><strong>Uptime:</strong> 1 day 13:28</p>
+                </div>
+                <div>
+                    <p><strong>Load Average (1/5/15 min):</strong> 2.98 2.50 2.16</p>
+                    <h3>Software Updates</h3>
+                    <pre>No updates available</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2 onclick="toggleCollapse('cpu-info')" style="cursor:pointer;">
+            CPU Information ▼
+        </h2>
+        <div id="cpu-info" class="collapse-content">
+            <div class="grid">
+                <div>
+                    <p><strong>CPU Model:</strong> Apple M3</p>
+                    <p><strong>CPU Cores:</strong> 8 physical, 8 logical</p>
+                    <p><strong>CPU Usage:</strong> 4.6% user, 12.18% 83.75% idle</p>
+                </div>
+                <div>
+                    <h3>Per-Core Usage</h3>
+                    <pre>This requires sudo permissions. Run 'sudo powermetrics' separately to view.</pre>
+                    
+                    <h3>Temperature Information</h3>
+                    <pre>Temperature monitoring requires the iStats gem. Install with: sudo gem install iStats</pre>
+                </div>
+            </div>
+            
+            <h3>Top Processes by CPU</h3>
+            <table>
+                <tr>
+                    <th>CPU %</th>
+                    <th>PID</th>
+                    <th>User</th>
+                    <th>Command</th>
+                </tr>
+                <tr><td>%CPU%</td><td>PID</td><td>USER</td><td>ARGS</td></tr>
+<tr><td>6.9%</td><td>8666</td><td>bipan</td><td>/Applications/Cursor.app/Contents/Frameworks/Cursor Helper (Renderer).app/Contents/MacOS/Cursor Helper (Renderer) --type=renderer --user-data-dir=/Users/bipan/Library/Application Support/Cursor --standard-schemes=vscode-webview,vscode-file --enable-sandbox --secure-schemes=vscode-webview,vscode-file --cors-schemes=vscode-webview,vscode-file --fetch-schemes=vscode-webview,vscode-file --service-worker-schemes=vscode-webview --code-cache-schemes=vscode-webview,vscode-file --app-path=/Applications/Cursor.app/Contents/Resources/app --enable-sandbox --enable-blink-features=HighlightAPI --force-gpu-mem-available-mb=1024 --disable-blink-features=FontMatchingCTMigration,StandardizedBrowserZoom, --lang=en-US --num-raster-threads=4 --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --renderer-client-id=9 --time-ticks-at-unix-epoch=-1742426602822966 --launch-time-ticks=24506209491 --shared-files --field-trial-handle=1718379636,r,9736800778401872173,11385638376018414788,262144 --enable-features=ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=CalculateNativeWinOcclusion,MacWebContentsOcclusion,PlzDedicatedWorker,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts --variations-seed-version --vscode-window-config=vscode:afbe2811-f604-4056-b7fe-87bfc24c5084 --seatbelt-client=84</td></tr>
+<tr><td>3.7%</td><td>21189</td><td>bipan</td><td>/Applications/Firefox.app/Contents/MacOS/plugin-container.app/Contents/MacOS/plugin-container -isForBrowser -prefsHandle 0 -prefsLen 39770 -prefMapHandle 1 -prefMapSize 267807 -jsInitHandle 2 -jsInitLen 247456 -sbStartup -sbAppPath /Applications/Firefox.app -sbLevel 3 -parentBuildID 20250317120031 -ipcHandle 0 -initialChannelId {7033e47b-c0b4-4f74-a748-a1ecc2b67cff} -parentPid 1353 -crashReporter gecko-crash-server-pipe.1353 -greomni /Applications/Firefox.app/Contents/Resources/omni.ja -appomni /Applications/Firefox.app/Contents/Resources/browser/omni.ja -appDir /Applications/Firefox.app/Contents/Resources/browser -profile /Users/bipan/Library/Application Support/Firefox/Profiles/drmfa41j.default-release-1721545410407 org.mozilla.machname.784047973 723 tab</td></tr>
+<tr><td>3.7%</td><td>2077</td><td>bipan</td><td>/Applications/Firefox.app/Contents/MacOS/plugin-container.app/Contents/MacOS/plugin-container -isForBrowser -prefsHandle 0 -prefsLen 39260 -prefMapHandle 1 -prefMapSize 267807 -jsInitHandle 2 -jsInitLen 247456 -sbStartup -sbAppPath /Applications/Firefox.app -sbLevel 3 -parentBuildID 20250317120031 -ipcHandle 0 -initialChannelId {60c81070-0246-414f-820f-13d74e01cd00} -parentPid 1353 -crashReporter gecko-crash-server-pipe.1353 -greomni /Applications/Firefox.app/Contents/Resources/omni.ja -appomni /Applications/Firefox.app/Contents/Resources/browser/omni.ja -appDir /Applications/Firefox.app/Contents/Resources/browser -profile /Users/bipan/Library/Application Support/Firefox/Profiles/drmfa41j.default-release-1721545410407 org.mozilla.machname.842288281 16 tab</td></tr>
+<tr><td>2.3%</td><td>1353</td><td>bipan</td><td>/Applications/Firefox.app/Contents/MacOS/firefox -os-restarted</td></tr>
+            </table>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2 onclick="toggleCollapse('memory-info')" style="cursor:pointer;">
+            Memory Usage ▼
+        </h2>
+        <div id="memory-info" class="collapse-content">
+            <div class="grid">
+                <div>
+                    <p><strong>Total Memory:</strong> 16 GB</p>
+                    <p><strong>Used Memory:</strong> 10.92 GB (71.7%)</p>
+                    <p><strong>Free Memory:</strong> 4.29 GB</p>
+                    <p><strong>Memory Pressure:</strong> </p>
+                    <p><strong>Free Percentage:</strong> 55%</p>
+                    
+                    <div class="meter">
+                        <span style="width: 71.7%" class="warning"></span>
+                    </div>
+                </div>
+                <div>
+                    <h3>Swap Usage</h3>
+                    <pre>total = 2048.00M used = 791.31M free = 1256.69M (encrypted)</pre>
+                    
+                    <h3>Top Processes by Memory</h3>
+                    <table>
+                        <tr>
+                            <th>MEM %</th>
+                            <th>PID</th>
+                            <th>User</th>
+                            <th>Command</th>
+                        </tr>
+                        <tr><td>4.9%</td><td>1502</td><td>bipan</td><td>/Applications/Firefox.app/Contents/MacOS/plugin-container.app/Contents/MacOS/plugin-container -isForBrowser -prefsHandle 0 -prefsLen 41392 -prefMapHandle 1 -prefMapSize 267807 -jsInitHandle 2 -jsInitLen 247456 -sbStartup -sbAppPath /Applications/Firefox.app -sbLevel 3 -parentBuildID 20250317120031 -ipcHandle 0 -initialChannelId {08255905-79fd-47ea-b74b-8805a9f52ccf} -parentPid 1353 -crashReporter gecko-crash-server-pipe.1353 -greomni /Applications/Firefox.app/Contents/Resources/omni.ja -appomni /Applications/Firefox.app/Contents/Resources/browser/omni.ja -appDir /Applications/Firefox.app/Contents/Resources/browser -profile /Users/bipan/Library/Application Support/Firefox/Profiles/drmfa41j.default-release-1721545410407 org.mozilla.machname.1958205079 2 tab</td></tr>
+<tr><td>3.0%</td><td>1353</td><td>bipan</td><td>/Applications/Firefox.app/Contents/MacOS/firefox -os-restarted</td></tr>
+<tr><td>2.9%</td><td>8666</td><td>bipan</td><td>/Applications/Cursor.app/Contents/Frameworks/Cursor Helper (Renderer).app/Contents/MacOS/Cursor Helper (Renderer) --type=renderer --user-data-dir=/Users/bipan/Library/Application Support/Cursor --standard-schemes=vscode-webview,vscode-file --enable-sandbox --secure-schemes=vscode-webview,vscode-file --cors-schemes=vscode-webview,vscode-file --fetch-schemes=vscode-webview,vscode-file --service-worker-schemes=vscode-webview --code-cache-schemes=vscode-webview,vscode-file --app-path=/Applications/Cursor.app/Contents/Resources/app --enable-sandbox --enable-blink-features=HighlightAPI --force-gpu-mem-available-mb=1024 --disable-blink-features=FontMatchingCTMigration,StandardizedBrowserZoom, --lang=en-US --num-raster-threads=4 --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --renderer-client-id=9 --time-ticks-at-unix-epoch=-1742426602822966 --launch-time-ticks=24506209491 --shared-files --field-trial-handle=1718379636,r,9736800778401872173,11385638376018414788,262144 --enable-features=ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=CalculateNativeWinOcclusion,MacWebContentsOcclusion,PlzDedicatedWorker,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts --variations-seed-version --vscode-window-config=vscode:afbe2811-f604-4056-b7fe-87bfc24c5084 --seatbelt-client=84</td></tr>
+<tr><td>2.5%</td><td>13630</td><td>bipan</td><td>/Applications/Firefox.app/Contents/MacOS/plugin-container.app/Contents/MacOS/plugin-container -isForBrowser -prefsHandle 0 -prefsLen 39458 -prefMapHandle 1 -prefMapSize 267807 -jsInitHandle 2 -jsInitLen 247456 -sbStartup -sbAppPath /Applications/Firefox.app -sbLevel 3 -parentBuildID 20250317120031 -ipcHandle 0 -initialChannelId {dae09922-d538-43fe-9651-44c3838a16a4} -parentPid 1353 -crashReporter gecko-crash-server-pipe.1353 -greomni /Applications/Firefox.app/Contents/Resources/omni.ja -appomni /Applications/Firefox.app/Contents/Resources/browser/omni.ja -appDir /Applications/Firefox.app/Contents/Resources/browser -profile /Users/bipan/Library/Application Support/Firefox/Profiles/drmfa41j.default-release-1721545410407 org.mozilla.machname.1309483550 326 tab</td></tr>
+<tr><td>2.4%</td><td>21189</td><td>bipan</td><td>/Applications/Firefox.app/Contents/MacOS/plugin-container.app/Contents/MacOS/plugin-container -isForBrowser -prefsHandle 0 -prefsLen 39770 -prefMapHandle 1 -prefMapSize 267807 -jsInitHandle 2 -jsInitLen 247456 -sbStartup -sbAppPath /Applications/Firefox.app -sbLevel 3 -parentBuildID 20250317120031 -ipcHandle 0 -initialChannelId {7033e47b-c0b4-4f74-a748-a1ecc2b67cff} -parentPid 1353 -crashReporter gecko-crash-server-pipe.1353 -greomni /Applications/Firefox.app/Contents/Resources/omni.ja -appomni /Applications/Firefox.app/Contents/Resources/browser/omni.ja -appDir /Applications/Firefox.app/Contents/Resources/browser -profile /Users/bipan/Library/Application Support/Firefox/Profiles/drmfa41j.default-release-1721545410407 org.mozilla.machname.784047973 723 tab</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2 onclick="toggleCollapse('disk-info')" style="cursor:pointer;">
+            Storage Information ▼
+        </h2>
+        <div id="disk-info" class="collapse-content">
+            <h3>Disk Usage</h3>
+            <pre>Filesystem        Size    Used   Avail Capacity iused ifree %iused  Mounted on
+/dev/disk3s1s1   926Gi    10Gi   642Gi     2%    412k  4.3G    0%   /
+devfs            204Ki   204Ki     0Bi   100%     704     0  100%   /dev
+/dev/disk3s6     926Gi   2.0Gi   642Gi     1%       2  6.7G    0%   /System/Volumes/VM
+/dev/disk3s2     926Gi   6.4Gi   642Gi     1%    1.3k  6.7G    0%   /System/Volumes/Preboot
+/dev/disk3s4     926Gi   2.4Mi   642Gi     1%      56  6.7G    0%   /System/Volumes/Update
+/dev/disk1s2     500Mi   6.0Mi   481Mi     2%       1  4.9M    0%   /System/Volumes/xarts
+/dev/disk1s1     500Mi   5.4Mi   481Mi     2%      32  4.9M    0%   /System/Volumes/iSCPreboot
+/dev/disk1s3     500Mi   2.5Mi   481Mi     1%      93  4.9M    0%   /System/Volumes/Hardware
+/dev/disk3s5     926Gi   264Gi   642Gi    30%    1.7M  6.7G    0%   /System/Volumes/Data
+/dev/disk3s3     926Gi   986Mi   642Gi     1%      38  6.7G    0%   /Volumes/Recovery</pre>
+            
+            <h3>SMART Status</h3>
+            <p>disk0: SMART Status: Verified<br>disk3: SMART Status: Verified<br></p>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2 onclick="toggleCollapse('network-info')" style="cursor:pointer;">
+            Network Information ▼
+        </h2>
+        <div id="network-info" class="collapse-content">
+            <p><strong>Wi-Fi:</strong> You are not associated with an AirPort network.</p>
+            <p><strong>Public IP:</strong> 163.53.146.103</p>
+            
+            <h3>Network Interfaces</h3>
+            <pre>	inet 192.168.4.22 netmask 0xfffffc00 broadcast 192.168.7.255</pre>
+            
+            <h3>Network Usage</h3>
+            <p>This requires the 'nettop' command to be run separately with sudo privileges.</p>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2 onclick="toggleCollapse('battery-info')" style="cursor:pointer;">
+            Battery Information ▼
+        </h2>
+        <div id="battery-info" class="collapse-content">
+            <div class="grid">
+                <div>
+                    <pre>      Charge Information:
+          Fully Charged: No
+          State of Charge (%): 44</pre>
+                </div>
+                <div>
+                    <p><strong>Battery Cycles:</strong> {"Ra03"=45,"Ra10"=107,"CellWom"=(0,0),"RaTableRaw"=(<0099003000260037005c0031003f0050005d0064007f009800de021f03930000>,<00b3003a002300250051002d003e0041004c00590074008200b801c9031a0000>,<00aa00330027002d0054002d003e00480056006b006b007e00c301d603100000>),"Qstart"=0,"AdapterPower"=,"TrueRemainingCapacity"=0,"DailyMinSoc"=41,"Ra04"=84,"CurrentSenseMonitorStatus"=0,"Ra11"=126,"CellVoltage"=(3800,3806,3801),"PackCurrentAccumulator"=2780751,"PassedCharge"=3269,"Flags"=16777217,"PresentDOD"=(55,54,55),"Ra05"=45,"Ra12"=195,"MiscStatus"=140,"FccComp1"=5678,"ChemID"=20882,"iMaxAndSocSmoothTable"=<0000000000000000000000000000000000000000000000000000000000000000>,"FccComp2"=5678,"PackCurrentAccumulatorCount"=134847,"DOD0"=(408,432,408),"Dod0AtQualifiedQmax"=0,"Ra06"=62,"ResScale"=0,"Ra13"=470,"FilteredCurrent"=0,"WeightedRa"=(66,63,64),"RSS"=0,"CellCurrentAccumulatorCount"=0,"Serial"="F8Y3485HBKTQ1LTAT","DataFlashWriteCount"=5914,"DailyMaxSoc"=99,"DateOfFirstUse"=0,"Ra07"=72,"Ra14"=784,"MaxCapacity"=100,"ChemicalWeightedRa"=0,"Ra00"=170,"BatteryHealthMetric"=0,"DesignCapacity"=6075,"Ra08"=86,"BatteryState"=<000000000000000000c3e400028d030002>,"CellCurrentAccumulator"=(0,0),"AlgoChemID"=20882,"MfgData"=<000000000b000100481400000431393134033030420341544c00000000000000>,"ManufactureDate"=57381605159219,"ISS"=18446744073709550998,"Ra01"=51,"Soc1Voltage"=0,"QmaxDisqualificationReason"=0,"ChargeAccum"=0,"SimRate"=0,"Qmax"=(6107,6178,6133),"PMUConfigured"=0,"ITMiscStatus"=0,"StateOfCharge"=42,"Ra09"=107,"GaugeFlagRaw"=192,"CycleCount"=143,"Voltage"=11422,"SystemPower"=,"LifetimeData"={"Raw"=<026a0a1800019dd20000000000000000026ba7ea0000c7e44092000000000000002a000610f30df532d829f017ebef2f1d8eebb5ef2febb500e20002c1080012>,"UpdateTime"=1742561451,"ResistanceUpdatedDisabledCount"=0,"CycleCountLastQmax"=76,"TimeAtHighSoc"=<000000003f060000060100000400000000000000000000000000000000000000d10200006b00000001000000000000000000000000000000000000000f0300005b00000001000000000000000000000000000000d90000006f1a0000c402000013000000010000000000000000000000>,"TemperatureSamples"=180488,"TotalOperatingTime"=11280,"MaximumDischargeCurrent"=18446744073709547311,"MinimumPackVoltage"=10736,"MaximumPackVoltage"=13016,"MaximumChargeCurrent"=6123,"AverageTemperature"=226,"MinimumTemperature"=6,"RDISCnt"=0,"MaximumTemperature"=42},"Ra02"=39}
+143</p>
+                    <p><strong>Battery Health:</strong> </p>
+                    <p><strong>Battery Capacity:</strong> % of original capacity</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2 onclick="toggleCollapse('security-info')" style="cursor:pointer;">
+            Security Status ▼
+        </h2>
+        <div id="security-info" class="collapse-content">
+            <p><strong>System Integrity Protection (SIP):</strong> <pre>System Integrity Protection status: enabled.</pre></p>
+            <p><strong>Gatekeeper:</strong> <pre>assessments enabled</pre></p>
+            <p><strong>Firewall:</strong> <pre>Firewall is enabled. (State = 1)</pre></p>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2 onclick="toggleCollapse('logs-info')" style="cursor:pointer;">
+            Recent System Logs ▼
+        </h2>
+        <div id="logs-info" class="collapse-content">
+            <p>Last hour's error and failure messages:</p>
+            <pre>2025-03-21 23:51:47.250 E  softwareupdated[17272:d51eb] [com.apple.SoftwareUpdateMacController:ScanManager] [ScanForSplatUpdates] Scan for Splat update assets failed with error: Error Domain=SUCoreError Code=8406 "[kSUCoreErrorScanNoUpdateFound] no update found" UserInfo={NSLocalizedDescription=[kSUCoreErrorScanNoUpdateFound] no update found}
+2025-03-21 23:51:47.250 Df softwareupdated[17272:d51eb] [com.apple.SoftwareUpdateMacController:ScanManager] [ScanReturnError] Not returning visible error to clients for the scan error: Error Domain=SUCoreError Code=8406 "[kSUCoreErrorScanNoUpdateFound] no update found" UserInfo={NSLocalizedDescription=[kSUCoreErrorScanNoUpdateFound] no update found}
+2025-03-21 23:51:47.257 Df softwareupdated[17272:d51eb] [com.apple.su:SERVER] [HandleCommandScan] Calling reply completion block with message: SUCoreConnectMessage(type:SERVER_MESSAGE|name:SUMacControllerResponseScan|clientID:softwareupdated.<17272>.<17272>|clientIDRaw:softwareupdated.<17272>|clientProcessIdentifier:17272|version:(null)|error:(null)|message:[>>>
+	SUMacControllerClientID: softwareupdated.<17272>
+	SUMacControllerResponse: {
+
+	}
+	SUMacControllerSender: com.apple.SoftwareUpdateMacController
+	SUMacControllerCommand: SUMacControllerResponseScan
+<<<])
+2025-03-21 23:51:47.257 Df softwareupdated[17272:d51f6] [com.apple.SoftwareUpdateMacController:CLIENT] [SendServerMessage](com.apple.sumaccontroller) sendMessage response received from server with response SUCoreConnectMessage(type:SERVER_MESSAGE|name:SUMacControllerResponseScan|clientID:softwareupdated.<17272>.<17272>|clientIDRaw:softwareupdated.<17272>|clientProcessIdentifier:17272|version:(null)|error:(null)|message:[>>>
+	SUMacControllerClientID: softwareupdated.<17272>
+	SUMacControllerResponse: {
+
+	}
+	SUMacControllerSender: com.apple.SoftwareUpdateMacController
+	SUMacControllerCommand: SUMacControllerResponseScan
+<<<]) error (null) for connection <NSXPCConnection: 0x92c07cbe0> connection to service with pid 17272 named com.apple.sumaccontroller
+2025-03-21 23:51:47.260 Df SoftwareUpdateNotificationManager[13934:d5220] [com.apple.followup:core] Cleared pending follow up items with success: 1, error: (null)
+2025-03-21 23:51:47.261 Df SoftwareUpdateNotificationManager[13934:d5220] [com.apple.followup:core] Cleared pending follow up items with success: 1, error: (null)</pre>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>Generated by my_health.sh • Page auto-refreshes every 30 seconds</p>
+    </div>
+</body>
+</html>
